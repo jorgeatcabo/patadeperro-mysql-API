@@ -14,11 +14,11 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:date/:hour/:activity_id', async (req, res) => {
+router.get('/:date/:activity_id', async (req, res) => {
   // find one Booking by its `id` value
   // be sure to include its associated BookingHours
   try {
-    const bookingData = await Booking.findOne({ where: { date: req.params.date, hour: req.params.hour, activity_id: req.params.activity_id }});
+    const bookingData = await Booking.findOne({ where: { date: req.params.date, activity_id: req.params.activity_id }});
 
     if (!bookingData) {
       res.status(404).json({ message: 'No Booking found with that id!' });
